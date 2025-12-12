@@ -31,8 +31,8 @@ RUN apt-get install -y bear
 RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) && \
     dpkg -i /StaticSlicer/tools/libssl1.1.${arch}.deb
 # This won't work for arm64 - need to build from source
-RUN wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb && \
-    dpkg -i srcml_1.0.0-1_ubuntu20.04.deb
+RUN wget https://github.com/srcML/srcML/releases/download/v1.1.0/srcml_1.1.0-1_ubuntu20.04_amd64.deb && \
+    dpkg -i srcml_1.1.0-1_ubuntu20.04_amd64.deb
 # RATS
 RUN git clone https://github.com/andrew-d/rough-auditing-tool-for-security
 WORKDIR /rough-auditing-tool-for-security

@@ -688,7 +688,8 @@ def analyze(srcml: Srcml, issues):
                 add_main(issue, func, concat_locations)
             else:
                 # Compile with libclang
-                cc = "clang -fsanitize=fuzzer,address -fsanitize-recover=address -fprofile-instr-generate -fcoverage-mapping -g"
+                # Replace flags for msan, ubsan, asan here
+                cc = "clang -fsanitize=fuzzer,address,undefined -fsanitize-recover=address,undefined -fprofile-instr-generate -fcoverage-mapping -g"
                 func, concat_locations = minimize_target(srcml, issue)
                 if func is None:
                     continue
