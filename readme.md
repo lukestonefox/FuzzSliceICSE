@@ -1,3 +1,29 @@
+# FuzzSlice: testing different sanitizers
+
+The recommended way to test FuzzSlice with different sanitizers is to pull the Docker image and modify the flags on line 691 of main.py.
+
+For my project, I used AddressSanitizer (ASan) which is enabled with the following line:
+```
+                cc = "clang -fsanitize=fuzzer,address -fsanitize-recover=address -fprofile-instr-generate -fcoverage-mapping -g"
+```
+
+Combination UBSAN and Asan can be enabled with:
+```
+                cc = "clang -fsanitize=fuzzer,address,undefined -fsanitize-recover=address,undefined -fprofile-instr-generate -fcoverage-mapping -g"
+```
+
+And only MemorySanitizer (MSan) can be enabled with (due to Msan and Asan incompatibility):
+```
+                cc = "clang -fsanitize=fuzzer,memory -fsanitize-recover=memory -fprofile-instr-generate -fcoverage-mapping -g"
+```
+
+For instructions on how to setup and run FuzzSlice please refer to the original readme below.
+
+This project was tested on the supplied repositories, but should work on any C/C++ repository that can be built with `make`.
+Modify `targets.txt` in the relevant `info_lib/<project>/` directory to add your own static analysis warnings or comment out certain ones.
+
+
+#### Below this line is the original readme
 # FuzzSlice
 
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/NobleMathews/FuzzSliceICSE/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/NobleMathews/FuzzSliceICSE)
