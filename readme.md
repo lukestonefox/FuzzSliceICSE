@@ -19,6 +19,8 @@ And only MemorySanitizer (MSan) can be enabled with (due to Msan and Asan incomp
 
 For instructions on how to setup and run FuzzSlice please refer to the original readme below.
 
+You can modify `config.yaml` to adjust the testing library and fuzzing time to match the report.  
+
 This project was tested on the supplied repositories, but should work on any C/C++ repository that can be built with `make`.
 Modify `targets.txt` in the relevant `info_lib/<project>/` directory to add your own static analysis warnings or comment out certain ones.
 
